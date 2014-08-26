@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc overview
- * @name clientApp
+ * @name graphAlgorithms
  * @description
- * # clientApp
+ * # graphAlgorithms
  *
  * Main module of the application.
  */
 angular
-  .module('clientApp', [
+  .module('graphAlgorithms', [
     'ngAnimate',
     'ngCookies',
     'ngResource',
@@ -23,9 +23,9 @@ angular
         templateUrl: 'app/views/main.html',
         controller: 'MainCtrl'
       })
-      .when('/about', {
-        templateUrl: 'app/views/about.html',
-        controller: 'AboutCtrl'
+      .when('/bfs', {
+    	  templateUrl: 'app/views/bfs.html',
+          controller: 'BfsCtrl'
       })
       .otherwise({
         redirectTo: '/'

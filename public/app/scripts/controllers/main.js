@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name clientApp.controller:MainCtrl
+ * @name graphAlgorithms.controller:MainCtrl
  * @description
  * # MainCtrl
- * Controller of the clientApp
+ * Controller of the graphAlgorithms
  */
-angular.module('clientApp')
+angular.module('graphAlgorithms')
   .controller('MainCtrl', function ($scope, $http) {
 
 	  $scope.awesomeThings = [
@@ -16,8 +16,5 @@ angular.module('clientApp')
 	      'Karma'
       ];
 
-	  $http.get('http://localhost:8080/menu').success(function(data) {
-          $scope.greeting = data;
-      });
 
   });

@@ -3,12 +3,16 @@ package pl.stalostech.server;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ImportResource;
 
 /**
  * Embedded web server
  * @author Bartosz Wysocki
  */
-@ComponentScan(basePackages = {"pl.stalostech"})
+@Configuration
+@ComponentScan(basePackages = {"pl.stalostech" })
+@ImportResource("/neo4jconfig.xml")
 @EnableAutoConfiguration
 public class SpringRestServer {
 
