@@ -12,7 +12,7 @@ import org.springframework.context.annotation.ImportResource;
  */
 @Configuration
 @ComponentScan(basePackages = {"pl.stalostech" })
-@ImportResource("/neo4jconfig.xml")
+@ImportResource("classpath:neo4jconfig.xml")
 @EnableAutoConfiguration
 public class SpringRestServer {
 

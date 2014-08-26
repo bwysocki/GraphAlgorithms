@@ -6,7 +6,6 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.neo4j.support.Neo4jTemplate;
@@ -28,39 +27,32 @@ public class BreadthFirstSearch {
     @Autowired
     private BFSRepository repo;
 
-    private final String graph = "CREATE\n" +
-        "(a:BFS:_BFS {name : 'A', x: 0,y : 0}),\n" +
-        "(b:BFS:_BFS {name : 'B', x: -3,y : -3}),\n" +
-        "(c:BFS:_BFS {name : 'C', x: 5,y : -3}),\n" +
-        "(d:BFS:_BFS {name : 'D', x: 1,y : -1}),\n" +
-        "(e:BFS:_BFS {name : 'E', x: -2,y : 3}),\n" +
-        "(f:BFS:_BFS {name : 'F', x: 3,y : -2}),\n" +
-        "(g:BFS:_BFS {name : 'G', x: 1,y : 2}),\n" +
-        "(h:BFS:_BFS {name : 'H', x: 6,y : -2}),\n" +
-        "b-[:PATH]->a-[:PATH]->b,\n" +
-        "d-[:PATH]->a-[:PATH]->d,\n" +
-        "g-[:PATH]->a-[:PATH]->g,\n" +
-        "e-[:PATH]->b-[:PATH]->e,\n" +
-        "f-[:PATH]->b-[:PATH]->f,\n" +
-        "h-[:PATH]->c-[:PATH]->h,\n" +
-        "f-[:PATH]->c-[:PATH]->f,\n" +
-        "f-[:PATH]->d-[:PATH]->f,\n" +
-        "g-[:PATH]->e-[:PATH]->g"
+    private final String graph =
+        "MERGE (a:BFS:_BFS {name : 'A', x: 0,y : 0})\n" +
+        "MERGE (b:BFS:_BFS {name : 'B', x: -3,y : -3})\n" +
+        "MERGE (c:BFS:_BFS {name : 'C', x: 5,y : -3})\n" +
+        "MERGE (d:BFS:_BFS {name : 'D', x: 1,y : -1})\n" +
+        "MERGE (e:BFS:_BFS {name : 'E', x: -2,y : 3})\n" +
+        "MERGE (f:BFS:_BFS {name : 'F', x: 3,y : -2})\n" +
+        "MERGE (g:BFS:_BFS {name : 'G', x: 1,y : 2})\n" +
+        "MERGE (h:BFS:_BFS {name : 'H', x: 6,y : -2})\n" +
+        "CREATE UNIQUE b-[:PATH]->a-[:PATH]->b\n" +
+        "CREATE UNIQUE d-[:PATH]->a-[:PATH]->d\n" +
+        "CREATE UNIQUE g-[:PATH]->a-[:PATH]->g\n" +
+        "CREATE UNIQUE e-[:PATH]->b-[:PATH]->e\n" +
+        "CREATE UNIQUE f-[:PATH]->b-[:PATH]->f\n" +
+        "CREATE UNIQUE h-[:PATH]->c-[:PATH]->h\n" +
+        "CREATE UNIQUE f-[:PATH]->c-[:PATH]->f\n" +
+        "CREATE UNIQUE f-[:PATH]->d-[:PATH]->f\n" +
+        "CREATE UNIQUE g-[:PATH]->e-[:PATH]->g"
         ;
 
     private final String graphIndex = "CREATE INDEX ON :BFS(name)";
-
-    private final String deleteGraph = "MATCH (n:BFS) OPTIONAL MATCH (n)-[r]-() DELETE n,r";
 
     @PostConstruct
     public void init() {
         neo.query(graph, null);
         neo.query(graphIndex, null);
-    }
-
-    @PreDestroy
-    public void clean() {
-        neo.query(deleteGraph, null);
     }
 
     /**
