@@ -13,9 +13,11 @@
 	<div class="container-fluid">
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
-          <ul class="nav nav-sidebar">
-            <li class="active"><a href="#">Overview</a></li>
-            <li><a href="#/bfs">Breadth First Search</a></li>
+          <ul class="nav nav-sidebar"  data-ng-controller="MenuController">
+            <li ng-class="getClass('/')"><a href="#">Overview</a></li>
+            <li ng-class="getClass('/bfs')"><a href="#/bfs">Breadth First Search</a></li>
+            <li ng-class="getClass('/dfs')"><a href="#/dfs">Depth First Search</a></li>
+            <li ng-class="getClass('/minmax')"><a href="#/minmax">Min Max</a></li>
 		  </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -55,8 +57,8 @@
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="bower_components/sigma/build/sigma.min.js"></script>
-    <script src="bower_components/sigma/build/plugins/sigma.parsers.json.min.js"></script>
+    <script src="app/scripts/sigma/build/sigma.min.js"></script>
+    <script src="app/scripts/sigma/build/plugins/sigma.parsers.json.min.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -64,6 +66,8 @@
         <script src="app/scripts/app.js"></script>
         <script src="app/scripts/controllers/main.js"></script>
         <script src="app/scripts/controllers/bfs.js"></script>
+        <script src="app/scripts/controllers/dfs.js"></script>
+        <script src="app/scripts/controllers/minmax.js"></script>
         <!-- endbuild -->
 </body>
 </html>

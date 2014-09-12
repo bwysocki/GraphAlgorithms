@@ -1,0 +1,37 @@
+<h1 class="page-header">Depth First Search</h1>
+
+<p>
+Przeszukiwanie w głąb (ang. Depth-first search, w skrócie DFS) – jeden z algorytmów przeszukiwania grafu.
+Przeszukiwanie w głąb polega na badaniu wszystkich krawędzi wychodzących z podanego wierzchołka.
+Po zbadaniu wszystkich krawędzi wychodzących z danego wierzchołka algorytm powraca do wierzchołka,
+z którego dany wierzchołek został odwiedzony Więcej na <a href="http://pl.wikipedia.org/wiki/Przeszukiwanie_w_g%C5%82%C4%85b" target="_blank">
+http://pl.wikipedia.org/wiki/Przeszukiwanie_w_głąb</a>
+</p>
+
+<div id="container" class="highlight"></div>
+
+<div class="control">
+
+	<div ng-show="showInitPanel">
+		<label for="exampleInputEmail1">Od którego węzła rozpocząć :</label>
+	    <select class="form-control startSelect" ng-model="startNode">
+		  <option>A</option>
+		  <option>B</option>
+		  <option>C</option>
+		  <option>D</option>
+		  <option>E</option>
+		  <option>F</option>
+		  <option>G</option>
+		  <option>H</option>
+		</select>
+		<button type="button" class="btn btn-primary" ng-click="initDFS()">wybierz węzeł startowy</button>
+	</div>
+
+	<div ng-show="!showInitPanel">
+		<button type="button" class="btn btn-primary" ng-click="prev()">Poprzedni krok</button>
+		<button type="button" class="btn btn-primary" ng-click="next()">Następny krok</button>
+		<button type="button" class="btn btn-success" ng-click="reInit()">Wybierz inny węzeł startowy</button>
+		<div class="alert alert-success visibleSol">Rozwiązanie : <span>{{visibleBfsSolution}}</span></div>
+	</div>
+
+</div>

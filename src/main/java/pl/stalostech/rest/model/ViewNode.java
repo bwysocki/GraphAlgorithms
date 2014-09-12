@@ -10,13 +10,15 @@ public class ViewNode {
 
     private String label;
 
+    private int score;
+
     private int x;
 
     private int y;
 
     private int size;
 
-    private String color = "black";
+    private String color = "#000000";
 
     public String getId() {
         return id;
@@ -95,6 +97,15 @@ public class ViewNode {
     public String toString() {
         return "ViewNode [id=" + id + ", label=" + label + ", x=" + x + ", y=" + y + ", size=" + size + ", color=" + color + "]";
     }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
 
 }
 

@@ -1,4 +1,39 @@
 <h1 class="page-header">Breadth First Search</h1>
 
+<p>
+Przeszukiwanie wszerz (ang. Breadth-first search, w skrócie BFS) – jeden z najprostszych algorytmów przeszukiwania grafu.
+Przechodzenie grafu rozpoczyna się od zadanego wierzchołka s i polega na odwiedzeniu wszystkich osiągalnych z niego wierzchołków.
+Wykorzystywany jest do odnajdywania najkrótszej drogi w grafie. Wynikiem działania algorytmu jest także drzewo przeszukiwania
+wszerz o korzeniu w s, zawierające wszystkie wierzchołki do których prowadzi droga z s. Algorytm działa prawidłowo zarówno dla
+grafów skierowanych jak i nieskierowanych. Więcej na <a href="http://pl.wikipedia.org/wiki/Przeszukiwanie_wszerz" target="_blank">
+http://pl.wikipedia.org/wiki/Przeszukiwanie_wszerz</a>
+</p>
+
 <div id="container" class="highlight"></div>
 
+<div class="control">
+
+	<div ng-show="showInitPanel">
+		<label for="exampleInputEmail1">Od którego węzła rozpocząć :</label>
+	    <select class="form-control startSelect" ng-model="startNode">
+		  <option>A</option>
+		  <option>B</option>
+		  <option>C</option>
+		  <option>D</option>
+		  <option>E</option>
+		  <option>F</option>
+		  <option>G</option>
+		  <option>H</option>
+		</select>
+		<button type="button" class="btn btn-primary" ng-click="initBFS()">wybierz węzeł startowy</button>
+	</div>
+
+	<div ng-show="!showInitPanel">
+		<button type="button" class="btn btn-primary" ng-click="prev()">Poprzedni krok</button>
+		<button type="button" class="btn btn-primary" ng-click="next()">Następny krok</button>
+		<button type="button" class="btn btn-success" ng-click="reInit()">Wybierz inny węzeł startowy</button>
+		<div class="alert alert-success visibleSol">Rozwiązanie : <span>{{visibleBfsSolution}}</span></div>
+	</div>
+
+<!-- <button type="button" class="btn btn-primary">Następny krok</button> -->
+</div>

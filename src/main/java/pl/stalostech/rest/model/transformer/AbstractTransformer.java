@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.neo4j.conversion.Result;
 import pl.stalostech.graph.domain.AbstractNode;
 import pl.stalostech.rest.model.ViewEdge;
 import pl.stalostech.rest.model.ViewGraph;
@@ -24,7 +23,7 @@ public abstract class AbstractTransformer<T extends AbstractNode<S>, S> {
     @Autowired
     protected GraphUtils graphUtils;
 
-    public ViewGraph transform(Result<T> nodes) {
+    public ViewGraph transform(Iterable<T> nodes) {
 
         List<ViewNode> vNodes = new ArrayList<ViewNode>();
         Set<ViewEdge> vEdges = new HashSet<ViewEdge>();
@@ -33,6 +32,21 @@ public abstract class AbstractTransformer<T extends AbstractNode<S>, S> {
             vNodes.add(transformToNode(node));
             addToVEdges(node, vEdges);
         }
+
+        ViewGraph graph = new ViewGraph();
+        graph.setEdges(new ArrayList<ViewEdge>(vEdges));
+        graph.setNodes(vNodes);
+
+        return graph;
+    }
+
+    public ViewGraph transform(T node) {
+
+        List<ViewNode> vNodes = new ArrayList<ViewNode>();
+        Set<ViewEdge> vEdges = new HashSet<ViewEdge>();
+
+        vNodes.add(transformToNode(node));
+        addToVEdges(node, vEdges);
 
         ViewGraph graph = new ViewGraph();
         graph.setEdges(new ArrayList<ViewEdge>(vEdges));

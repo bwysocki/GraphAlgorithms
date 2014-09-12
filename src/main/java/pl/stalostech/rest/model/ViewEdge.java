@@ -14,7 +14,7 @@ public class ViewEdge {
 
     private int size;
 
-    private String color = "black";
+    private String color = "#000000";
 
     public String getId() {
         return id;

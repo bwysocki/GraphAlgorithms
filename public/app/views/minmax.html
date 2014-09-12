@@ -1,0 +1,46 @@
+<h1 class="page-header">MinMax</h1>
+
+<p>
+Minimax (czasami minmax) jest metodą w teorii decyzji do minimalizowania maksymalnych możliwych strat.
+Alternatywnie można je traktować jako maksymalizację minimalnego zysku (maximin). Wywodzi się to z
+ teorii gry o sumie zerowej, obejmujących oba przypadki, zarówno ten, gdzie gracze wykonują ruchy naprzemiennie,
+ jak i ten, gdzie wykonują ruchy jednocześnie. Zostało to również rozszerzone na bardziej skomplikowane gry i
+ ogólne podejmowanie decyzji w obecności niepewności.
+ Więcej na <a href="http://pl.wikipedia.org/wiki/Algorytm_min-max" target="_blank">
+http://pl.wikipedia.org/wiki/Algorytm_min-max</a>.
+<br /><br />
+Poniższy przykład ilustruje rozwiązywanie przez komputer gry 'kółko i krzyżyk'
+(a dokładniej jednego kroku - postawienia przez komputer krzyżyka lub kółka). Za pomocą algorytmu Minmax, komputer decyduje,
+które pole należy zaznaczyć. Poniższy przykład zakłada, że gra już trwa. Człowiek jak i komputer wykonali po trzy ruchy.
+Kolejny ruch należy do komputera.
+
+<br /><br />
+Przyjęta heurystyka:
+</p>
+<ul>
+<li>wygrana x (komputera) + 10 * (ilość kroków - iteracja)</li>
+<li>wygrana o - 10 punktów (ilość kroków - iteracja)</li>
+<li>dwa x w lini (pozioma, pionowa lub przekątna) + 2 punkty za każdą dwójkę</li>
+<li>dwa o w lini (pozioma, pionowa lub przekątna) - 2 punkty za każdą dwójkę</li>
+</ul>
+
+<div id="container" class="highlight"></div>
+
+
+<div ng-show="showInitPanel">
+	<label for="exampleInputEmail1">Długość przeszukiwania:</label>
+    <select class="form-control startSelect" ng-model="depth">
+	  <option>1</option>
+	  <option>2</option>
+	  <option>3</option>
+	</select>
+	<br /><br />
+	<button type="button" class="btn btn-primary" ng-click="initMinMax()">pokaż analizę minmax</button>
+</div>
+
+
+<div ng-show="!showInitPanel">
+	<button type="button" class="btn btn-primary" ng-click="next()">Następny węzeł do analizy</button>
+	<button type="button" class="btn btn-success" ng-click="reInit()">Wybierz inną konfigurację</button>
+	<div class="alert alert-success visibleSol">Maksymalna wartość heurystyki : <span>{{maxHeuristic}}</span></div>
+</div>

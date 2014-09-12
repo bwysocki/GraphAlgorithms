@@ -70,3 +70,17 @@
 	border: 1px solid #e1e1e8;
     border-radius: 4px;
   }
+.control{
+	margin-top:40px;
+	clear:both;
+}
+.startSelect{
+	width:400px;
+	display:inline;
+}
+.visibleSol{
+	margin-top:30px;
+}
+.visibleSol span{
+	font-weight:bold;
+}
